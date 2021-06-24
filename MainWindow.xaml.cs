@@ -24,16 +24,40 @@ namespace PasswordRandomizer
         public MainWindow()
         {
             InitializeComponent();
-            mdp = new PasswordRDM();
+            
         }
 
         private void btnGenererMdp_Click(object sender, RoutedEventArgs e)
         {
-            txtMdp.Clear();
-            for (int i = 0; i < 1000; i++)
+            int iNbreMdp = 0;
+            mdp = new PasswordRDM(cbMaj.IsChecked, cbSymb.IsChecked, cbChiffres.IsChecked);
+
+            try
             {
-                txtMdp.AppendText(mdp.GenererMdp() + "\n");
+                iNbreMdp = int.Parse(txtNbreMDP.Text);
             }
+            catch
+            {
+                MessageBox.Show("La saisie est incorrect.");
+            }
+
+            if(iNbreMdp < 0)
+            {
+                MessageBox.Show("Le nombre de mot de passe doit être un nombre positif");
+            }
+            else if (iNbreMdp <= 1000)
+            {
+                txtMdp.Clear();
+                for (int i = 0; i < iNbreMdp; i++)
+                {
+                    txtMdp.AppendText(mdp.GenererMdp() + "\n");
+                }
+            }
+            else
+            {
+                MessageBox.Show("Le nombre de mot de passe est limité à 1000");
+            }
+           
             
             
 

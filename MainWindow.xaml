@@ -5,15 +5,20 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PasswordRandomizer"
         mc:Ignorable="d"
-        Title="MainWindow" Height="351" Width="735" Background="#FF453DEC">
+        Title="Password Randomizer" Height="351" Width="735" Background="#FFA276FF">
     <Grid>
         <Label x:Name="label" Content="Password Randomizer" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Height="76" Width="561" FontSize="48" FontFamily="Doppio One" FontWeight="Bold" FontStyle="Normal"/>
-        <Button x:Name="btnGenererMdp" Content="Générer le mot de passe" HorizontalAlignment="Left" Margin="425,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.029,-0.481" Height="50" Width="283" FontSize="24" FontFamily="Doppio One" BorderBrush="Black" Background="#FF2689F3" Click="btnGenererMdp_Click"/>
-        <TextBox x:Name="txtMdp" HorizontalAlignment="Left" Margin="22,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" Height="214" FontFamily="Doppio One" Background="#FF0C98F9" FontSize="16">
+        <Button x:Name="btnGenererMdp" Content="Générer le mot de passe" HorizontalAlignment="Left" Margin="425,91,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.029,-0.481" Height="50" Width="283" FontSize="24" FontFamily="Doppio One" BorderBrush="Black" Background="#FF52D0FF" Click="btnGenererMdp_Click"/>
+        <TextBox x:Name="txtMdp" HorizontalAlignment="Left" Margin="22,86,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="389" Height="214" FontFamily="Doppio One" Background="#FF52D0FF" FontSize="16">
             <TextBox.BorderBrush>
                 <SolidColorBrush Color="#FFABADB3" Opacity="0"/>
             </TextBox.BorderBrush>
         </TextBox>
+        <TextBox x:Name="txtNbreMDP" HorizontalAlignment="Left" Margin="653,146,0,0" Text="10" TextWrapping="Wrap" VerticalAlignment="Top" Width="55" Height="30" VerticalContentAlignment="Center" FontFamily="Doppio One" FontSize="18" Background="#FF52D0FF" BorderBrush="Black"/>
+        <Label x:Name="label1" Content="Nombre de mot de passe" HorizontalAlignment="Left" Margin="425,144,0,0" VerticalAlignment="Top" Height="33" Width="228" FontFamily="Doppio One" FontSize="18"/>
+        <CheckBox x:Name="cbChiffres" Content="Chiffres" HorizontalAlignment="Left" Margin="432,217,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" RenderTransformOrigin="1,1" FontFamily="Doppio One" FontWeight="Normal" Height="27" Width="134"/>
+        <CheckBox x:Name="cbMaj" Content="Majuscules" HorizontalAlignment="Left" Margin="432,186,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" RenderTransformOrigin="1,1" FontFamily="Doppio One" FontWeight="Normal" Height="26" Width="134"/>
+        <CheckBox x:Name="cbSymb" Content="Symboles" HorizontalAlignment="Left" Margin="432,249,0,0" VerticalAlignment="Top" FontSize="20" VerticalContentAlignment="Center" HorizontalContentAlignment="Left" RenderTransformOrigin="1,1" FontFamily="Doppio One" FontWeight="Normal" Height="27" Width="134"/>
 
     </Grid>
 </Window>

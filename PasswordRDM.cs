@@ -17,16 +17,23 @@ namespace PasswordRandomizer
 {
     class PasswordRDM
     {
+        private bool? bMaj;
+        private bool? bSymb;
+        private bool? bNum;
         private Random RdmMdp;
         private List<char> cLstCarRDM;
         private List<char> cLstMajRDM;
         private List<char> cLstNumRDM;
+        private List<char> cLstSymbRDM;
         private List<char> cLstMDP;
         private char[] cTabTmp;
         private char[] cTabReturn;
 
-        public PasswordRDM()
+        public PasswordRDM(bool? Maj, bool? Symb, bool? Num)
         {
+            bMaj = Maj;
+            bNum = Num;
+            bSymb = Symb;
             GenererMdp();
         }
 
@@ -37,7 +44,7 @@ namespace PasswordRandomizer
             cLstMDP = new List<char>(26);
             for (int i = 0; i < 3; i++)
             {
-                GenererRDM();
+                GenererMdpMajNumSymb();
                 for ( i2 = 0; i2 < cTabReturn.Length; i2++)
                 {
                    cLstMDP.Add(cTabReturn[i2]);
@@ -60,12 +67,13 @@ namespace PasswordRandomizer
            
         }
 
-        private void GenererRDM()
+        private void GenererMdpMajNumSymb()
         {
             RdmMdp = new Random();
             GenererCarRandom();
             GenererMajRandom();
             GenererNumRandom();
+            GenererSymbRandom();
 
             
             cTabTmp = new char[8];
@@ -74,15 +82,156 @@ namespace PasswordRandomizer
             Random rdmNbre = new Random();
             for (int i = 0; i < cTabTmp.Length; i++)
             {
-                int iNbre = rdmNbre.Next(1, 4);
+                if(bMaj == true && bNum == true && bSymb == true)
+                {
+                    int iNbre = rdmNbre.Next(1, 5);
+
+                    if (iNbre == 1)
+                    {
+                        cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                    }
+                    else if (iNbre == 2)
+                    {
+                        cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
+                    }
+                    else if (iNbre == 3)
+                    {
+                        cTabTmp[i] = cLstNumRDM[rdmNbre.Next(10)];
+                    }
+                    else
+                    {
+                        cTabTmp[i] = cLstSymbRDM[rdmNbre.Next(25)];
+                    }
+                    cTabReturn[i] = cTabTmp[i];
+                }
+                else if (bMaj == true || bNum == true || bSymb == true)
+                {
+                    if(bMaj == true && bNum == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 4);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 3)
+                        {
+                            cTabTmp[i] = cLstNumRDM[rdmNbre.Next(10)];
+                        }
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+                    else if(bMaj == true && bSymb == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 4);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 3)
+                        {
+                            cTabTmp[i] = cLstSymbRDM[rdmNbre.Next(25)];
+                        }
+
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+                    else if(bNum == true && bSymb == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 4);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstSymbRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 3)
+                        {
+                            cTabTmp[i] = cLstNumRDM[rdmNbre.Next(10)];
+                        }
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+                    else if(bMaj == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 3);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
+                        }
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+                    else if (bNum == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 3);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstNumRDM[rdmNbre.Next(10)];
+                        }
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+                    else if (bSymb == true)
+                    {
+                        int iNbre = rdmNbre.Next(1, 3);
+
+                        if (iNbre == 1)
+                        {
+                            cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                        }
+                        else if (iNbre == 2)
+                        {
+                            cTabTmp[i] = cLstSymbRDM[rdmNbre.Next(25)];
+                        }
+                        cTabReturn[i] = cTabTmp[i];
+                    }
+
+                }
+                else
+                {
+                    cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                    cTabReturn[i] = cTabTmp[i];
+                }
+                
+            }
+        }
+
+        /*private void GenererMdpMaj()
+        {
+            RdmMdp = new Random();
+            GenererCarRandom();
+            GenererNumRandom();
+
+
+            cTabTmp = new char[8];
+            cTabReturn = new char[8];
+
+            Random rdmNbre = new Random();
+            for (int i = 0; i < cTabTmp.Length; i++)
+            {
+                int iNbre = rdmNbre.Next(1, 3);
 
                 if (iNbre == 1)
                 {
                     cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
-                }
-                else if (iNbre == 2)
-                {
-                    cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
                 }
                 else
                 {
@@ -91,6 +240,60 @@ namespace PasswordRandomizer
                 cTabReturn[i] = cTabTmp[i];
             }
         }
+
+        private void GenererMdpSymb()
+        {
+            RdmMdp = new Random();
+            GenererCarRandom();
+            GenererSymbRandom();
+
+
+            cTabTmp = new char[8];
+            cTabReturn = new char[8];
+
+            Random rdmNbre = new Random();
+            for (int i = 0; i < cTabTmp.Length; i++)
+            {
+                int iNbre = rdmNbre.Next(1, 3);
+
+                if (iNbre == 1)
+                {
+                    cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                }
+                else
+                {
+                    cTabTmp[i] = cLstSymbRDM[rdmNbre.Next(10)];
+                }
+                cTabReturn[i] = cTabTmp[i];
+            }
+        }
+
+        private void GenererMdpNum()
+        {
+            RdmMdp = new Random();
+            GenererCarRandom();
+            GenererMajRandom();
+
+
+            cTabTmp = new char[8];
+            cTabReturn = new char[8];
+
+            Random rdmNbre = new Random();
+            for (int i = 0; i < cTabTmp.Length; i++)
+            {
+                int iNbre = rdmNbre.Next(1, 3);
+
+                if (iNbre == 1)
+                {
+                    cTabTmp[i] = cLstCarRDM[rdmNbre.Next(25)];
+                }
+                else
+                {
+                    cTabTmp[i] = cLstMajRDM[rdmNbre.Next(25)];
+                }
+                cTabReturn[i] = cTabTmp[i];
+            }
+        }*/
 
         private void GenererCarRandom()
         {
@@ -108,6 +311,8 @@ namespace PasswordRandomizer
                 cTabCar.RemoveAt(iNbre);
             }
         }
+
+
 
         private void GenererMajRandom()
         {
@@ -137,6 +342,22 @@ namespace PasswordRandomizer
                 int iNbre = RdmMdp.Next(cTabCar.Count);
                 Tab[i] = cTabCar[iNbre];
                 cLstNumRDM.Add(Tab[i]);
+                cTabCar.RemoveAt(iNbre);
+            }
+        }
+
+        private void GenererSymbRandom()
+        {
+            List<char> cTabCar = new List<char>() { '@', '[', ']', '^', '!', '"', '#', '$', '%', '&', '(', ')', '*', '+', ',', '.', '/', ':', ';', '{', '}', '<', '>', '=', '|', '?' };
+            cLstSymbRDM = new List<char>(cTabCar.Count);
+            char[] Tab = new char[cTabCar.Count];
+
+
+            for (int i = 0; i < Tab.Length; i++)
+            {
+                int iNbre = RdmMdp.Next(cTabCar.Count);
+                Tab[i] = cTabCar[iNbre];
+                cLstSymbRDM.Add(Tab[i]);
                 cTabCar.RemoveAt(iNbre);
             }
         }
